@@ -8,8 +8,8 @@ public class LogicSimulator {
     private Vector<Device> iPins = new Vector<Device>();
     private Vector<Device> oPins = new Vector<Device>();
 
-    private Integer ConvertStringToPositiveInteger(String convertedString){
-        Integer result = Math.abs(Integer.parseInt(convertedString));
+    private int ConvertStringToPositiveInteger(String convertedString){
+        int result = Math.abs(Integer.parseInt(convertedString));
 
         return result - 1;
     }
@@ -42,6 +42,14 @@ public class LogicSimulator {
         }
     }
 
+    private void ChooseOPin(){
+        for (Device device: circuits){
+            if (!device.GetIsOtherDeviceIPin()){
+                oPins.add(device);
+            }
+        }
+    }
+
     public boolean Load(String filePath){
         try {
             BufferedReader in = new BufferedReader(new FileReader(filePath));
@@ -64,17 +72,82 @@ public class LogicSimulator {
 
                 // connect circuit
                 ConnectCircuit(inputCircuit);
-            }
 
-            System.out.println(inputCircuit);
+                // find oPin
+                ChooseOPin();
+            }
+//            System.out.println(inputCircuit);
+//            System.out.println(oPins.get(0).getOutput());
             return true;
         } catch (IOException e) {
             return false;
         }
     }
 
-    public String GetSimulationResult(Vector<Boolean> simulationResult){
-        return "";
+    public String GetSimulationResult(Vector<Boolean> inputSimulationResult){
+        String outputSimulationResult = "Simulation Result:\\n";
+
+        for (int i = 0; i < inputSimulationResult.size(); i++){
+            iPins.get(i).setInput(inputSimulationResult.get(i));
+        }
+
+        // i i i
+        for (int i = 0; i < inputSimulationResult.size(); i++){
+            outputSimulationResult += "i ";
+        }
+
+        // i i i |
+        outputSimulationResult += "|";
+
+        // i i i | o
+        for (int i = 0; i < oPins.size(); i++){
+            outputSimulationResult += " o";
+        }
+
+        outputSimulationResult += "\n";
+
+        // i i i | o
+        // 1 2 3
+        for (int i = 0; i < inputSimulationResult.size(); i++){
+            outputSimulationResult += Integer.toString(i + 1) + " ";
+        }
+
+        // i i i | o
+        // 1 2 3 |
+        outputSimulationResult += "|";
+
+        // i i i | o
+        // 1 2 3 | 1
+        for (int i = 0; i < oPins.size(); i++){
+            outputSimulationResult += " " + Integer.toString(i + 1);
+        }
+
+        outputSimulationResult += "\n";
+
+        // i i i | o
+        // 1 2 3 | 1
+        // ------
+        for (int i = 0; i < inputSimulationResult.size(); i++){
+            outputSimulationResult += "--";
+        }
+
+        // i i i | o
+        // 1 2 3 | 1
+        // ------+
+        outputSimulationResult += "+";
+
+        // i i i | o
+        // 1 2 3 | 1
+        // ------+--
+        for (int i = 0; i < oPins.size(); i++){
+            outputSimulationResult += "--";
+        }
+
+        outputSimulationResult += "\n";
+
+
+
+        return outputSimulationResult;
     }
 
     public String GetTruthTable(){

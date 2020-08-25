@@ -36,13 +36,13 @@ public class LogicSimulatorTest
 
     @Test
     public  void testGetSimulationResult(){
-        Vector<Device> test = new Vector<Device>();
-        test.setSize(2);
-        assertEquals(2, test.size());
+        LogicSimulator logicSimulator = new LogicSimulator();
 
-        test.add(0, new IPin());
+        logicSimulator.Load(successFilePath);
 
-        assertEquals(IPin.class.getName(), test.elementAt(0).getClass().getName());
-        assertEquals(2, test.size());
+        Vector<Boolean> inputValues = new Vector<>();
+        inputValues.add(false);
+        inputValues.add(true);
+        inputValues.add(true);
     }
 }

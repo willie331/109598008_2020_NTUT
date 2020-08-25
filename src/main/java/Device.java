@@ -2,6 +2,7 @@ import java.util.Vector;
 
 public class Device {
     protected Vector<Device> iPins;
+    private boolean isOtherDeviceIPin = false;
 
     public Device()
     {
@@ -10,6 +11,7 @@ public class Device {
 
     public void addInputPin(Device iPin)
     {
+        iPin.isOtherDeviceIPin = true;
         iPins.add(iPin);
     }
 
@@ -22,5 +24,9 @@ public class Device {
     {
         // complete this method by yourself
         return false;
+    }
+
+    public boolean GetIsOtherDeviceIPin(){
+        return isOtherDeviceIPin;
     }
 }
