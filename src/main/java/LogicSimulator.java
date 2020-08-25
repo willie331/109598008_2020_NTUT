@@ -9,6 +9,7 @@ public class LogicSimulator {
     private Vector<Device> oPins = new Vector<Device>();
     private boolean isFileLoadSuccess = false;
 
+    //將字串轉為正整數並符合字串存入順序 ex: -1 -> 0, -2 -> 1
     private int ConvertStringToPositiveInteger(String convertedString){
         int result = Math.abs(Integer.parseInt(convertedString));
 
@@ -166,7 +167,7 @@ public class LogicSimulator {
 
     // 建立真值表
     private void CreateTruthTable(Vector<String> truthTable){
-        int nBit = iPins.size();
+        int nBit = iPins.size(); //幾個輸入就幾個bit
         int rows = (int) Math.pow(2,nBit);
         StringBuilder stringBuilder = new StringBuilder();
 
