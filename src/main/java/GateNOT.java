@@ -1,7 +1,7 @@
 public class GateNOT extends Device {
     @Override
-    public boolean getOutput()
+    public boolean GetOutput()
     {
-        return !iPins.get(0).getOutput();
+        return !iPins.get(0).GetOutput();
     }
 }

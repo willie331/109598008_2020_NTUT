@@ -1,13 +1,13 @@
 public class IPin extends Device {
     private boolean inputValue;
     @Override
-    public void setInput(boolean value)
+    public void SetInput(boolean value)
     {
         inputValue = value;
     }
 
     @Override
-    public boolean getOutput()
+    public boolean GetOutput()
     {
         return inputValue;
     }

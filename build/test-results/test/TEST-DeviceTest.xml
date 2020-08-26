@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DeviceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-08-26T01:36:14" hostname="MSI" time="0.002">
+<testsuite name="DeviceTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-08-26T02:17:11" hostname="MSI" time="0.002">
   <properties/>
-  <testcase name="testDevicePolymorphism" classname="DeviceTest" time="0.001"/>
+  <testcase name="testDevicePolymorphism" classname="DeviceTest" time="0.0"/>
   <testcase name="testGateAND" classname="DeviceTest" time="0.0"/>
   <testcase name="testGateNOT" classname="DeviceTest" time="0.0"/>
   <testcase name="testIPinAndOPin" classname="DeviceTest" time="0.0"/>

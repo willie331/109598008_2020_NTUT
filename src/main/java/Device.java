@@ -9,18 +9,18 @@ public class Device {
         iPins = new Vector<>();
     }
 
-    public void addInputPin(Device iPin)
+    public void AddInputPin(Device iPin)
     {
         iPin.isOtherDeviceIPin = true;
         iPins.add(iPin);
     }
 
-    public void setInput(boolean value)
+    public void SetInput(boolean value)
     {
         // complete this method by yourself
     }
 
-    public boolean getOutput()
+    public boolean GetOutput()
     {
         // complete this method by yourself
         return false;

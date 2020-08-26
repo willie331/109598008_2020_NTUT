@@ -46,11 +46,11 @@ public class LogicSimulator {
             for (int j = 0; j < spliteInputCircuit.length; j++){
                 if (spliteInputCircuit[j].matches("-[1-9]\\d*")){
                     int index = ConvertStringToPositiveInteger(spliteInputCircuit[j]);
-                    nowGate.addInputPin(iPins.get(index));
+                    nowGate.AddInputPin(iPins.get(index));
                 }
                 else if (spliteInputCircuit[j].matches("[1-9]\\d*\\.[0-9]+")) {
                     String splitInputPin = spliteInputCircuit[j].split("\\.")[0];
-                    nowGate.addInputPin(circuits.get(ConvertStringToPositiveInteger(splitInputPin)));
+                    nowGate.AddInputPin(circuits.get(ConvertStringToPositiveInteger(splitInputPin)));
                 }
             }
         }
@@ -86,9 +86,14 @@ public class LogicSimulator {
                 // find oPin
                 ChooseOPin();
             }
+            else{
+                isFileLoadSuccess = false;
+                return false;
+            }
             isFileLoadSuccess = true;
             return true;
         } catch (IOException e) {
+            isFileLoadSuccess = false;
             return false;
         }
     }
@@ -152,21 +157,19 @@ public class LogicSimulator {
         outputSimulationResult.append("Simulation Result:" + "\n");
 
         for (int i = 0; i < inputSimulationResult.size(); i++){
-            iPins.get(i).setInput(inputSimulationResult.get(i));
+            iPins.get(i).SetInput(inputSimulationResult.get(i));
         }
 
         SetHeader(outputSimulationResult);
 
         for (int i = 0; i< iPins.size(); i++){
-            outputSimulationResult.append((iPins.get(i).getOutput() ? "1" : "0") + " ");
+            outputSimulationResult.append((iPins.get(i).GetOutput() ? "1" : "0") + " ");
         }
-
         outputSimulationResult.append("|");
 
         for (int i = 0; i < oPins.size(); i++){
-            outputSimulationResult.append(" " + (oPins.get(i).getOutput() ? "1" : "0"));
+            outputSimulationResult.append(" " + (oPins.get(i).GetOutput() ? "1" : "0"));
         }
-
         outputSimulationResult.append("\n");
 
         return outputSimulationResult.toString();
@@ -202,16 +205,16 @@ public class LogicSimulator {
             for (int iPinsIdex = 0; iPinsIdex < iPins.size(); iPinsIdex++){
                 outputResult.append(splitBinaryNumber[iPinsIdex] + " ");
                 if (splitBinaryNumber[iPinsIdex].equals("1")){
-                    iPins.get(iPinsIdex).setInput(true);
+                    iPins.get(iPinsIdex).SetInput(true);
                 }
                 else if (splitBinaryNumber[iPinsIdex].equals("0")){
-                    iPins.get(iPinsIdex).setInput(false);
+                    iPins.get(iPinsIdex).SetInput(false);
                 }
             }
             outputResult.append("|");
 
             for (int oPinsIndex = 0; oPinsIndex < oPins.size(); oPinsIndex++){
-                outputResult.append(" " + (oPins.get(oPinsIndex).getOutput() ? "1" : "0"));
+                outputResult.append(" " + (oPins.get(oPinsIndex).GetOutput() ? "1" : "0"));
             }
             outputResult.append("\n");
         }
