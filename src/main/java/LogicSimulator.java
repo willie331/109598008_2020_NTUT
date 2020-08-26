@@ -4,12 +4,18 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class LogicSimulator {
-    private Vector<Device> circuits = new Vector<Device>();
-    private Vector<Device> iPins = new Vector<Device>();
-    private Vector<Device> oPins = new Vector<Device>();
+    private Vector<Device> circuits;
+    private Vector<Device> iPins;
+    private Vector<Device> oPins;
     private boolean isFileLoadSuccess = false;
 
-    //將字串轉為正整數並符合字串存入順序 ex: -1 -> 0, -2 -> 1
+    private void Initialize(){
+        circuits = new Vector<Device>();
+        iPins = new Vector<Device>();
+        oPins = new Vector<Device>();
+    }
+
+    // ex: -1 -> 0, -2 -> 1
     private int ConvertStringToPositiveInteger(String convertedString){
         int result = Math.abs(Integer.parseInt(convertedString));
 
@@ -59,6 +65,7 @@ public class LogicSimulator {
     }
 
     public boolean Load(String filePath){
+        Initialize();
         try {
             BufferedReader in = new BufferedReader(new FileReader(filePath));
             Vector<String> inputCircuit = new Vector<String>();
