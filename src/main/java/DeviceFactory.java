@@ -1,5 +1,5 @@
 public class DeviceFactory {
-    public Device createDeviceFromType(String type){
+    public static Device CreateDeviceFromType(String type){
         switch(type) {
             case "1":
                 return new GateAND();

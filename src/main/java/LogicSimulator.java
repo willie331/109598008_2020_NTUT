@@ -31,8 +31,7 @@ public class LogicSimulator {
     private void CreateCircuit(Vector<String> inputCircuit){
         for (int i = 2; i < inputCircuit.size(); i++) {
             String[] splitInputCircuit = inputCircuit.get(i).split(" ");
-            DeviceFactory deviceFactory = new DeviceFactory();
-            Device nowGate = deviceFactory.createDeviceFromType(splitInputCircuit[0]);
+            Device nowGate = DeviceFactory.CreateDeviceFromType(splitInputCircuit[0]);
 
             circuits.add(nowGate);
         }
